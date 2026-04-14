@@ -1,0 +1,25 @@
+server:
+  port: 8081 # Spring Boot Web Port
+spring:
+  application:
+    name: Mindray-LIS
+
+  datasource:
+    url: jdbc:sqlite:lis_db.sqlite
+    driver-class-name: org.sqlite.JDBC
+    username: sa
+    password: sa
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.community.dialect.SQLiteDialect
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+# Custom Configuration for Mindray Analyzer
+lis:
+  mindray:
+    port: 5502
