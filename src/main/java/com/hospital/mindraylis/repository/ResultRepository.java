@@ -1,6 +1,6 @@
 package com.hospital.mindraylis.repository;
 
-import com.hospital.mindraylis.domain.model.AnalysisResult;
+import com.hospital.mindraylis.domain.AnalysisResult;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import java.util.List;

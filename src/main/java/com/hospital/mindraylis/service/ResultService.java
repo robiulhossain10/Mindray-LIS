@@ -1,8 +1,8 @@
 package com.hospital.mindraylis.service;
 
 import com.hospital.mindraylis.core.AstmParser;
-import com.hospital.mindraylis.domain.model.AnalysisResult;
-import com.hospital.mindraylis.domain.model.RawDataLog;
+import com.hospital.mindraylis.domain.AnalysisResult;
+import com.hospital.mindraylis.domain.RawDataLog;
 import com.hospital.mindraylis.repository.LogRepository;
 import com.hospital.mindraylis.repository.ResultRepository;
 import org.springframework.transaction.annotation.Transactional; // Spring Transactional ব্যবহার করা ভালো

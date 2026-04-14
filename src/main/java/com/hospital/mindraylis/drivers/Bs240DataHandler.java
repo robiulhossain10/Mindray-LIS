@@ -68,18 +68,34 @@ public class Bs240DataHandler extends SimpleChannelInboundHandler<String> {
 
         for (char c : msg.toCharArray()) {
             if (c == AstmConstants.ENQ) {
+                // ১. মেশিন সেশন শুরু করতে চাইলে ACK দিন
                 ctx.writeAndFlush(String.valueOf(AstmConstants.ACK));
+                log.info("Handshake: Received ENQ, sent ACK");
+
             } else if (c == AstmConstants.EOT) {
+                // ২. মেশিন সেশন শেষ করলে ডেটা প্রসেস করুন
+                // এখানে ACK পাঠাবেন না (ASTM Standard অনুযায়ী EOT এর ACK হয় না)
+                log.info("Session End: Received EOT. Processing data...");
                 if (sb.length() > 0) {
                     resultService.processAndSave(sb.toString());
-                    sb.setLength(0);
+                    sb.setLength(0); // বাফার ক্লিয়ার করুন
                 }
+
+            } else if (c == AstmConstants.STX) {
+                // ৩. ফ্রেম শুরু হলে বাফার ক্লিয়ার করে নতুন ফ্রেম নিন (ঐচ্ছিক কিন্তু সেফ)
+                // sb.setLength(0);
+            } else if (c == AstmConstants.ETX || c == AstmConstants.ETB) {
+                // ৪. ফ্রেম শেষ হলে ACK দিন যাতে মেশিন পরের ফ্রেম পাঠায়
                 ctx.writeAndFlush(String.valueOf(AstmConstants.ACK));
-            } else if (c != AstmConstants.STX && c != AstmConstants.ETX) {
+            } else if (c != AstmConstants.STX && c != '\n' && c != '\r') {
+                // ৫. আসল ডেটা বাফারে যোগ করুন
                 sb.append(c);
-                if (c == AstmConstants.LF || c == AstmConstants.CR) {
-                    ctx.writeAndFlush(String.valueOf(AstmConstants.ACK));
-                }
+            }
+
+            // Mindray-তে অনেক সময় প্রতি লাইনের শেষে \r (CR) থাকে।
+            // যদি আপনার মেশিন প্রতি লাইনের পর ACK চায়, তবে নিচের ব্লকটি ব্যবহার করুন:
+            if (c == AstmConstants.CR) {
+                ctx.writeAndFlush(String.valueOf(AstmConstants.ACK));
             }
         }
     }

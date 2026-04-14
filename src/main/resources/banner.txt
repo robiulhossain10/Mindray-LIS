@@ -1,0 +1,13 @@
+${AnsiColor.BRIGHT_GREEN}  _____   _____  _   _  _____  _______  ______
+ |_   _| / ____|| \ | ||_   _||__   __||  ____|
+   | |  | |  __ |  \| |  | |     | |   | |__
+   | |  | | |_ || . ` |  | |     | |   |  __|
+  _| |_ | |__| || |\  | _| |_    | |   | |____
+ |_____| \_____||_| \_||_____|   |_|   |______|
+
+${AnsiColor.BRIGHT_MAGENTA}   >> LABORATORY INFORMATION SYSTEM (LIS) <<
+${AnsiColor.BRIGHT_YELLOW}   >> Client: MONOWARA HOSPITAL <<
+${AnsiColor.BRIGHT_RED}   >> Powered by: HIS SYSTEM <<
+${AnsiColor.BRIGHT_GREEN}   >> Developed by: ROBIUL HOSSAIN <<
+${AnsiColor.BRIGHT_BLACK}   >> Version: 1.0.0 | Spring Boot: ${spring-boot.version}
+${AnsiColor.DEFAULT}

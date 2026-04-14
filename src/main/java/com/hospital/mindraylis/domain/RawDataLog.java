@@ -1,4 +1,4 @@
-package com.hospital.mindraylis.domain.model;
+package com.hospital.mindraylis.domain;
 
 import jakarta.persistence.*;
 import lombok.Data;

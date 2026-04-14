@@ -1,7 +1,7 @@
 package com.hospital.mindraylis.repository;
 
 
-import com.hospital.mindraylis.domain.model.RawDataLog;
+import com.hospital.mindraylis.domain.RawDataLog;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
